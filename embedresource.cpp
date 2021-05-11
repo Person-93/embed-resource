@@ -13,8 +13,8 @@ int main( int argc, char** argv ) {
         return EXIT_FAILURE;
     }
 
-    std::filesystem::path dst{ argv[ 1 ] };
-    std::filesystem::path src{ argv[ 2 ] };
+    const auto dst = std::filesystem::path{ argv[ 1 ] };
+    const auto src = std::filesystem::path{ argv[ 2 ] };
 
     std::string sym = src.filename().string();
     replace( sym.begin(), sym.end(), '.', '_' );
@@ -34,15 +34,15 @@ int main( int argc, char** argv ) {
         ifs.get( c );
         ofs << "0x" << std::hex << ( c & 0xff ) << ", ";
         if ( ++lineCount == 10 ) {
-            ofs << std::endl;
+            ofs << '\n';
             lineCount = 0;
         }
     }
 
 
-    ofs << "};" << std::endl;
+    ofs << "\n};\n";
     ofs << "const size_t _resource_" << sym << "_len = sizeof(_resource_" << sym
-        << ");";
+        << ");\n";
 
     return EXIT_SUCCESS;
 }
