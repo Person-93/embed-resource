@@ -20,7 +20,8 @@ int main( int argc, char** argv ) {
     replace( sym.begin(), sym.end(), '.', '_' );
     replace( sym.begin(), sym.end(), '-', '_' );
 
-    create_directories( dst.parent_path() );
+    if ( const auto parent = dst.parent_path(); !parent.empty() )
+        create_directories( parent );
 
     std::ofstream ofs{ dst };
     std::ifstream ifs{ src };
