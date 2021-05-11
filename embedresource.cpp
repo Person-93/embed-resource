@@ -13,7 +13,7 @@ int main( int argc, char** argv ) {
         return EXIT_FAILURE;
     }
 
-    const auto dst = std::filesystem::path{ argv[ 1 ] };
+    const auto dst = std::filesystem::path{ argv[ 1 ] } += ".c";
     const auto src = std::filesystem::path{ argv[ 2 ] };
 
     std::string sym = src.filename().string();
