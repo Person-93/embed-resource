@@ -29,7 +29,7 @@ int main( int argc, char** argv ) {
 
     ofs << std::hex;
     ofs << "#include <stdlib.h>\n";
-    ofs << "const char _resource_" << sym << "[] = {\n";
+    ofs << "const char _resource_" << sym << "_data[] = {\n";
 
     size_t lineCount = 0;
     while ( !ifs.eof() ) {
@@ -45,7 +45,7 @@ int main( int argc, char** argv ) {
 
     ofs << "\n};\n";
     ofs << "const size_t _resource_" << sym << "_len = sizeof(_resource_" << sym
-        << ");\n";
+        << "_data);\n";
 
     return EXIT_SUCCESS;
 }
