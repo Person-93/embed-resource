@@ -11,3 +11,8 @@ list ( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 find_package ( Filesystem REQUIRED )
 
 add_subdirectory ( src )
+
+if ( PERSON93_RESOURCE_ENABLE_TESTING )
+    include ( CTest )
+    add_subdirectory ( test )
+endif ()
