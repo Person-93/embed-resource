@@ -27,6 +27,7 @@ int main( int argc, char** argv ) {
     std::ofstream ofs{ dst };
     std::ifstream ifs{ src };
 
+    ofs << std::hex;
     ofs << "#include <stdlib.h>\n";
     ofs << "const char _resource_" << sym << "[] = {\n";
 
@@ -34,7 +35,7 @@ int main( int argc, char** argv ) {
     while ( !ifs.eof() ) {
         char c;
         ifs.get( c );
-        ofs << "0x" << std::hex << ( c & 0xff ) << ", ";
+        ofs << "0x" << ( c & 0xff ) << ", ";
         if ( ++lineCount == 10 ) {
             ofs << '\n';
             lineCount = 0;
