@@ -1,7 +1,7 @@
 include_guard ()
 
 set (RESOURCE_empty_file "${CMAKE_CURRENT_BINARY_DIR}/person93.empty.c")
-file (TOUCH ${emptyFile})
+file (TOUCH ${RESOURCE_empty_file})
 
 set (RESOURCE_master_list "")
 
