@@ -10,7 +10,7 @@ foreach (sample ${samples})
     list (APPEND RESOURCE_sample_outputs ${RESOURCE_output})
     # cmake-format: off
     add_custom_command (
-        OUTPUT ${output}
+        OUTPUT ${RESOURCE_output}
         COMMAND ${CMAKE_COMMAND} -E copy ${RESOURCE_input} ${RESOURCE_output}
         MAIN_DEPENDENCY ${input}
         COMMENT "Copying sample: ${RESOURCE_sample}" VERBATIM
