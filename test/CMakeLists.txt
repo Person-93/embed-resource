@@ -1,5 +1,3 @@
-include (Person93AddResources)
-
 # copy the samples to the build tree so the test executables can check them
 unset (samples)
 list (APPEND samples sample1.txt sample-2.txt dir/sample3.txt)

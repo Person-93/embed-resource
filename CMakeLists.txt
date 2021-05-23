@@ -12,6 +12,7 @@ add_subdirectory (vendor)
 find_package (Filesystem REQUIRED)
 
 add_subdirectory (src)
+include (Person93AddResources)
 
 if (PERSON93_RESOURCE_ENABLE_TESTING)
     include (CTest)
