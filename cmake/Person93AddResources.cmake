@@ -14,7 +14,7 @@ function (target_add_resources target)
         set (symName "${CMAKE_BINARY_DIR}/${relative}")
         set (output ${symName}.c)
         if (NOT output IN_LIST RESOURCE_master_list)
-            message (STATUS "Adding rule to generate ${relative}")
+            message (VERBOSE "Adding rule to generate ${relative}")
             list (APPEND RESOURCE_master_list ${output})
             add_custom_command (
                 OUTPUT ${output}
@@ -33,6 +33,7 @@ function (target_add_resources target)
 endfunction ()
 
 function (add_resource_library name)
+    message (VERBOSE "Adding resource library ${name}")
     add_library (${name} STATIC ${RESOURCE_empty_file})
     target_include_directories (${name} INTERFACE ../include)
     target_add_resources (${name} ${ARGN})
