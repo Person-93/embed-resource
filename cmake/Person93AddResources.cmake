@@ -1,9 +1,9 @@
 include_guard ()
 
-set (emptyFile "${CMAKE_CURRENT_BINARY_DIR}/person93.empty.c")
+set (RESOURCE_empty_file "${CMAKE_CURRENT_BINARY_DIR}/person93.empty.c")
 file (TOUCH ${emptyFile})
 
-set (masterList "")
+set (RESOURCE_master_list "")
 
 function (target_add_resources target)
     set (sources "")
@@ -13,9 +13,9 @@ function (target_add_resources target)
               )
         set (symName "${CMAKE_BINARY_DIR}/${relative}")
         set (output ${symName}.c)
-        if (NOT output IN_LIST masterList)
+        if (NOT output IN_LIST RESOURCE_master_list)
             message (STATUS "Adding rule to generate ${relative}")
-            list (APPEND masterList ${output})
+            list (APPEND RESOURCE_master_list ${output})
             add_custom_command (
                 OUTPUT ${output}
                 COMMAND person93_embed_resource ${symName} ${input}
@@ -33,7 +33,7 @@ function (target_add_resources target)
 endfunction ()
 
 function (add_resource_library name)
-    add_library (${name} STATIC ${emptyFile})
+    add_library (${name} STATIC ${RESOURCE_empty_file})
     target_include_directories (${name} INTERFACE ../include)
     target_add_resources (${name} ${ARGN})
 endfunction ()
