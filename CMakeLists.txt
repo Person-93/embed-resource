@@ -17,4 +17,11 @@ include (Person93AddResources)
 if (PERSON93_RESOURCE_ENABLE_TESTING)
     include (CTest)
     add_subdirectory (test)
+    # cmake-format: off
+    set_property (DIRECTORY test PROPERTY EXCLUDE_FROM_ALL ON)
+    # cmake-format: on
+    configure_file (
+        cmake/CTestCustom.cmake.in "${CMAKE_CURRENT_BINARY_DIR}/CTestCustom.cmake"
+        @ONLY
+        )
 endif ()
