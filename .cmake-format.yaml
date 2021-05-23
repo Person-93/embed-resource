@@ -175,6 +175,7 @@ lint:
     - a list of lint codes to disable
   disabled_codes:
     - C0111 # Missing docstring - use rst comments instead
+    - C0112 # Missing docstring for function
     - C0307 # Bad indentation - use the formatter to handle this
     - C0301 # Line too long - Formatter generally handles this, Only thing it misses is
             #                 comments.
