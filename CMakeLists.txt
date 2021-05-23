@@ -8,6 +8,7 @@ set ( CMAKE_CXX_EXTENSIONS OFF )
 option ( PERSON93_RESOURCE_ENABLE_TESTING OFF )
 list ( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake )
 
+add_subdirectory ( vendor )
 find_package ( Filesystem REQUIRED )
 
 add_subdirectory ( src )
