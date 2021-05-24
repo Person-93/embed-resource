@@ -2,6 +2,10 @@
 Resource
 ========
 
+.. image:: https://readthedocs.org/projects/embed-resource/badge/?version=latest
+  :target: https://embed-resource.readthedocs.io/en/latest/?badge=latest
+  :alt: Documentation Status
+
 Embed binary files and resources into c++ projects.
 
 Usage
