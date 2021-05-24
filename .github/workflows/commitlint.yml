@@ -1,0 +1,10 @@
+name: commitlint
+on: [ push, pull_request, workflow_dispatch ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Person-93/commitlint-gh-action@v0.2.0
+        with:
+          since: "2021-05-24"
