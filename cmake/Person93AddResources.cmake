@@ -48,7 +48,9 @@ function (target_add_resources target)
         list (APPEND sources "${output}")
     endforeach ()
     target_sources (${target} PRIVATE ${sources})
-    target_include_directories (${target} PRIVATE ../include)
+    target_include_directories (
+        ${target} PRIVATE ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/../include
+        )
 endfunction ()
 
 #[==============================================================================================[.rst:
@@ -66,6 +68,8 @@ endfunction ()
 function (add_resource_library name)
     message (VERBOSE "Adding resource library ${name}")
     add_library (${name} STATIC ${RESOURCE_empty_file})
-    target_include_directories (${name} INTERFACE ../include)
+    target_include_directories (
+        ${name} INTERFACE ${CMAKE_CURRENT_FUNCTION_LIST_DIR}/../include
+        )
     target_add_resources (${name} ${ARGN})
 endfunction ()
