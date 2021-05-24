@@ -1,3 +1,11 @@
+#[==============================================================================================[.rst:
+Embed Resources
+---------------
+
+Commands to embed resources at build time.
+
+#]==============================================================================================]
+
 include_guard ()
 
 set (RESOURCE_empty_file "${CMAKE_CURRENT_BINARY_DIR}/person93.empty.c")
@@ -5,6 +13,17 @@ file (TOUCH ${RESOURCE_empty_file})
 
 set (RESOURCE_master_list "")
 
+#[==============================================================================================[.rst:
+
+.. cmake:command:: target_add_resources
+
+  .. code-block:: cmake
+
+    target_add_resources(<target> <resource_file> ...)
+
+  Embed resources in an existing target. The resource include directory is added as a private include.
+
+#]==============================================================================================]
 function (target_add_resources target)
     set (sources "")
     foreach (input ${ARGN})
@@ -32,6 +51,18 @@ function (target_add_resources target)
     target_include_directories (${target} PRIVATE ../include)
 endfunction ()
 
+#[==============================================================================================[.rst:
+
+.. cmake:command:: add_resource_library
+
+  .. code-block:: cmake
+
+    add_resource_library(<name> <resource_file> ...)
+
+  Create a new static library target with the given name and adds the resource files to it.
+  The resource include directory is added as an interface include.
+
+#]==============================================================================================]
 function (add_resource_library name)
     message (VERBOSE "Adding resource library ${name}")
     add_library (${name} STATIC ${RESOURCE_empty_file})

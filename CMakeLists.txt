@@ -6,6 +6,7 @@ set (CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_CXX_EXTENSIONS OFF)
 
 option (PERSON93_RESOURCE_ENABLE_TESTING OFF)
+option (PERSON93_RESOURCE_BUILD_DOCS OFF)
 list (APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 add_subdirectory (vendor)
@@ -24,4 +25,10 @@ if (PERSON93_RESOURCE_ENABLE_TESTING)
         cmake/CTestCustom.cmake.in "${CMAKE_CURRENT_BINARY_DIR}/CTestCustom.cmake"
         @ONLY
         )
+endif ()
+
+if (PERSON93_RESOURCE_BUILD_DOCS)
+    find_package (Sphinx REQUIRED)
+    add_subdirectory (docs)
+    set_property (DIRECTORY docs PROPERTY EXCLUDE_FROM_ALL ON)
 endif ()
