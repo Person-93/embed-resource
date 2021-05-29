@@ -14,7 +14,9 @@ int main( int argc, char** argv ) {
         return EXIT_FAILURE;
     }
 
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
     const auto dst = std::filesystem::path{ argv[ 1 ] } += ".c";
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-pointer-arithmetic)
     const auto src = std::filesystem::path{ argv[ 2 ] };
 
     std::string sym = src.filename().string();
@@ -31,12 +33,13 @@ int main( int argc, char** argv ) {
     ofs << "#include <stdlib.h>\n";
     ofs << "const char _resource_" << sym << "_data[] = {\n";
 
-    size_t lineCount = 0;
+    constexpr std::size_t lineLength = 10;
+    std::size_t lineCount            = 0;
     while ( !ifs.eof() ) {
-        char c;
+        char c;// NOLINT(cppcoreguidelines-init-variables) initialized next line
         ifs.get( c );
-        ofs << "0x" << ( c & 0xff ) << ", ";
-        if ( ++lineCount == 10 ) {
+        ofs << "0x" << static_cast< int >( c ) << ", ";
+        if ( ++lineCount == lineLength ) {
             ofs << '\n';
             lineCount = 0;
         }
