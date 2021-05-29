@@ -35,3 +35,20 @@ repos:
     hooks:
       - id: cmake-format
       - id: cmake-lint
+  - repo: https://github.com/psf/black
+    rev: 21.5b1
+    hooks:
+      - id: black
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: Clang Format
+        language: system
+        entry: git clang-format --binary clang-format-11
+        always_run: true
+        pass_filenames: false
+      - id: clang-tidy
+        name: Clang Tidy
+        language: system
+        types: [ c++ ]
+        entry: ./run-clang-tidy

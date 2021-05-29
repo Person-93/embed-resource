@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+shopt -s inherit_errexit
+
+readonly build_dir="$(cat build-dir.txt)"
+if [ ! -d "$build_dir" ]; then
+  echo >&2 "The build directory specified in build-dir.txt doesn't exist"
+  echo >&2 "Did you forget to run the register_compilation_db target?"
+  exit 1
+fi
+
+exec ./run-clang-tidy.py -quiet -clang-tidy-binary clang-tidy-11 \
+  -clang-apply-replacements-binary clang-apply-replacements-11 \
+  -p "$(cat build-dir.txt)" "$@"

@@ -3,3 +3,4 @@ cmake-build-*
 sample_output.c
 
 /venv/
+/build-dir.txt

@@ -2,7 +2,7 @@
 set -euo pipefail
 shopt -s inherit_errexit
 
-readonly dependencies=(pre-commit)
+readonly dependencies=(pre-commit clang-tidy-11 clang-format-11 clang-apply-replacements-11 shellcheck)
 
 function status() {
   printf "\\n\\n[Status] %s\\n" "$1"
